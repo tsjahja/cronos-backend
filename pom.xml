@@ -35,6 +35,13 @@
       <version>${jersey2.version}</version>
     </dependency>
 
+    <!--log4j-->
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-log4j12</artifactId>
+      <version>1.6.1</version>
+    </dependency>
+
     <dependency>
       <groupId>com.owlike</groupId>
       <artifactId>genson</artifactId>
@@ -65,17 +72,18 @@
       <scope>test</scope>
     </dependency>
 
+    <!--jwt authentication-->
+    <dependency>
+      <groupId>io.jsonwebtoken</groupId>
+      <artifactId>jjwt</artifactId>
+      <version>0.9.0</version>
+    </dependency>
+
     <!--settings file-->
     <dependency>
       <groupId>commons-configuration</groupId>
       <artifactId>commons-configuration</artifactId>
       <version>1.10</version>
-    </dependency>
-
-    <dependency>
-      <groupId>com.stripe</groupId>
-      <artifactId>stripe-java</artifactId>
-      <version>4.2.0</version>
     </dependency>
 
   </dependencies>
@@ -131,6 +139,18 @@
             <version>2.20.1</version>
           </dependency>
         </dependencies>
+      </plugin>
+
+      <!--flyway-->
+      <plugin>
+        <groupId>org.flywaydb</groupId>
+        <artifactId>flyway-maven-plugin</artifactId>
+        <version>5.0.7</version>
+        <configuration>
+          <url>jdbc:mysql://localhost:3306/cronos?serverTimezone=UTC</url>
+          <user>root</user>
+          <password>tos</password>
+        </configuration>
       </plugin>
     </plugins>
   </build>

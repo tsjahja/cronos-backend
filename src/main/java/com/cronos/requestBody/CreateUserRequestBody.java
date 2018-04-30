@@ -1,5 +1,7 @@
 package com.cronos.requestBody;
 
+import com.cronos.model.User;
+
 /**
  * Created by toshikijahja on 7/29/17.
  */
@@ -7,10 +9,11 @@ public class CreateUserRequestBody {
 
     private String firstName;
     private String lastName;
+    private String resumeUrl;
     private String email;
-    private Long birthday;
-    private String gender;
-    private String token;
+    private int standingYear;
+    private User.Degree degree;
+    private long birthDate;
 
     public CreateUserRequestBody() {
 
@@ -32,6 +35,14 @@ public class CreateUserRequestBody {
         this.lastName = lastName;
     }
 
+    public String getResumeUrl() {
+        return this.resumeUrl;
+    }
+
+    public void setResumeUrl(final String resumeUrl) {
+        this.resumeUrl = resumeUrl;
+    }
+
     public String getEmail() {
         return this.email;
     }
@@ -40,27 +51,28 @@ public class CreateUserRequestBody {
         this.email = email;
     }
 
-    public long getBirthday() {
-        return this.birthday;
+    public int getStandingYear() {
+        return this.standingYear;
     }
 
-    public void setBirthday(final Long birthday) {
-        this.birthday = birthday;
+    public void setStandingYear(final int standingYear) {
+        this.standingYear = standingYear;
     }
 
-    public String getGender() {
-        return this.gender;
+    public User.Degree getDegree() {
+        return this.degree;
     }
 
-    public void setGender(final String gender) {
-        this.gender = gender;
+    public void setDegree(final User.Degree degree) {
+        this.degree = degree;
     }
 
-    public String getToken() {
-        return this.token;
+
+    public long getBirthDate() {
+        return this.birthDate;
     }
 
-    public void setToken(final String token) {
-        this.token = token;
+    public void setBirthDate(final Long birthDate) {
+        this.birthDate = birthDate;
     }
 }

@@ -1,6 +1,7 @@
 package com.cronos.model;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 public class User {
@@ -16,17 +17,27 @@ public class User {
     private String lastName;
 
     @Column
+    private String resumeUrl;
+
+    @Column
     private String email;
 
     @Column
+    private int standingYear;
+
+    @Column
     @Enumerated(EnumType.STRING)
-    private Gender gender;
+    private Degree degree;
 
-    @Column (nullable = false)
-    private String stripeCustomerId;
+    @Column
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date birthDate = null;
 
-    public enum Gender {
-        MALE, FEMALE;
+    public enum Degree {
+        ASSOCIATE,
+        BACHELOR,
+        MASTERS,
+        PHD
     }
 
     public User() {
@@ -36,9 +47,11 @@ public class User {
     public User(final Builder builder) {
         setFirstName(builder.firstName);
         setLastName(builder.lastName);
+        setResumeUrl(builder.resumeUrl);
         setEmail(builder.email);
-        setGender(builder.gender);
-        setStripeCustomerId(builder.stripeCustomerId);
+        setStandingYear(builder.standingYear);
+        setDegree(builder.degree);
+        setBirthDate(builder.birthDate);
     }
 
     public int getId() {
@@ -65,6 +78,14 @@ public class User {
         this.lastName = lastName;
     }
 
+    public String getResumeUrl() {
+        return this.resumeUrl;
+    }
+
+    public void setResumeUrl(final String resumeUrl) {
+        this.resumeUrl = resumeUrl;
+    }
+
     public String getEmail() {
         return this.email;
     }
@@ -73,28 +94,38 @@ public class User {
         this.email = email;
     }
 
-    public Gender getGender() {
-        return this.gender;
+    public int getStandingYear() {
+        return this.standingYear;
     }
 
-    public void setGender(final Gender gender) {
-        this.gender = gender;
+    public void setStandingYear(final int standingYear) {
+        this.standingYear = standingYear;
     }
 
-    public String getStripeCustomerId() {
-        return this.stripeCustomerId;
+    public Degree getDegree() {
+        return this.degree;
     }
 
-    public void setStripeCustomerId(final String stripeCustomerId) {
-        this.stripeCustomerId = stripeCustomerId;
+    public void setDegree(final Degree degree) {
+        this.degree = degree;
+    }
+
+    public Date getBirthDate() {
+        return this.birthDate;
+    }
+
+    public void setBirthDate(final Date birthDate) {
+        this.birthDate = birthDate;
     }
 
     public static class Builder {
         private String firstName;
         private String lastName;
+        private String resumeUrl;
         private String email;
-        private Gender gender;
-        private String stripeCustomerId;
+        private int standingYear;
+        private Degree degree;
+        private Date birthDate;
 
         public Builder firstName(final String firstName) {
             this.firstName = firstName;
@@ -106,18 +137,28 @@ public class User {
             return this;
         }
 
+        public Builder resumeUrl(final String resumeUrl) {
+            this.resumeUrl = resumeUrl;
+            return this;
+        }
+
         public Builder email(final String email) {
             this.email = email;
             return this;
         }
 
-        public Builder gender(final Gender gender) {
-            this.gender = gender;
+        public Builder standingYear(final int standingYear) {
+            this.standingYear = standingYear;
             return this;
         }
 
-        public Builder stripeCustomerId(final String stripeCustomerId) {
-            this.stripeCustomerId = stripeCustomerId;
+        public Builder degree(final Degree degree) {
+            this.degree = degree;
+            return this;
+        }
+
+        public Builder birthDate(final Date birthDate) {
+            this.birthDate = birthDate;
             return this;
         }
 

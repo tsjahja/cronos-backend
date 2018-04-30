@@ -4,8 +4,6 @@ import com.cronos.model.User;
 import com.cronos.requestBody.CreateUserRequestBody;
 import com.cronos.view.UserView;
 
-import java.sql.Date;
-
 /**
  * Created by toshikijahja on 6/7/17.
  */
@@ -15,15 +13,16 @@ public class UserDao extends BaseDao<User> {
         super(sessionProvider, User.class);
     }
 
-    public UserView createUser(final CreateUserRequestBody createUserRequestBody,
-                               final String stripeCustomerId) {
+    public UserView createUser(final CreateUserRequestBody createUserRequestBody) {
         getSessionProvider().startTransaction();
         final User user = new User.Builder()
                 .firstName(createUserRequestBody.getFirstName())
                 .lastName(createUserRequestBody.getLastName())
+                .resumeUrl(createUserRequestBody.getResumeUrl())
                 .email(createUserRequestBody.getEmail())
-                .gender(User.Gender.valueOf(createUserRequestBody.getGender()))
-                .stripeCustomerId(stripeCustomerId)
+                .standingYear(createUserRequestBody.getStandingYear())
+                .degree(createUserRequestBody.getDegree())
+                .birthDate(new java.util.Date(createUserRequestBody.getBirthDate()))
                 .build();
         getSessionProvider().getSession().save(user);
         getSessionProvider().commitTransaction();

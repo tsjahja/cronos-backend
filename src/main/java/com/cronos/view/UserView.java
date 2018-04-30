@@ -28,11 +28,23 @@ public class UserView {
         return user.getLastName();
     }
 
+    public String getResumeUrl() {
+        return user.getResumeUrl();
+    }
+
     public String getEmail() {
         return user.getEmail();
     }
 
-    public User.Gender getGender() {
-        return user.getGender();
+    public int getStandingYear() {
+        return user.getStandingYear();
+    }
+
+    public User.Degree getGender() {
+        return user.getDegree();
+    }
+
+    public Date getBirthDate() {
+        return user.getBirthDate();
     }
 }
